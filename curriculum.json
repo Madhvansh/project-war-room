@@ -1,0 +1,787 @@
+{
+  "meta": {
+    "mission": "Touch all 435 problems of the Striver A2Z / TUF+ sheet in 20 days via two-tier engagement: Tier A full solves, Tier B recognition passes. Sheet 100% touched by end of Day 18; Days 19-20 are integration.",
+    "user": "",
+    "baseline_done": 0,
+    "start_date": "2026-01-01",
+    "end_date": "2026-01-20",
+    "timezone": "UTC",
+    "language": "C++",
+    "_note": "TEMPLATE VALUES. Your real settings live in data/config.json (created on first run, gitignored); the server re-bases these 20 days onto your start date in memory. Run `npm run setup` to change them."
+  },
+  "schedule_template": {
+    "wake": "07:00",
+    "pre_anchor": "gym, home between 09:00 and 10:00",
+    "anchor_window": [
+      "09:30",
+      "10:30"
+    ],
+    "sleep_guard": {
+      "hard_stop": "23:00",
+      "in_bed": "23:30",
+      "compress_when_projected_end_after": "22:45",
+      "compression_order": [
+        "trim_tierB_by_3",
+        "breaks_to_minimum_15_40_30",
+        "block4_to_30min"
+      ],
+      "never_trim": [
+        "sleep",
+        "block5_below_30min"
+      ]
+    },
+    "blocks": [
+      {
+        "id": "B0",
+        "name": "Overflow + warm-up",
+        "minutes": 50,
+        "content": "overflow queue, post-contest upsolve, one warm-up re-solve"
+      },
+      {
+        "id": "B1",
+        "name": "New topic",
+        "minutes": 160,
+        "content": "lecture at 2x + canonical Tier A solves"
+      },
+      {
+        "id": "BREAK1",
+        "name": "Break",
+        "minutes": 20,
+        "content": "off screen"
+      },
+      {
+        "id": "B2a",
+        "name": "Tier A grind",
+        "minutes": 105,
+        "content": "full solves under 10/10/35"
+      },
+      {
+        "id": "LUNCH",
+        "name": "Lunch",
+        "minutes": 50,
+        "content": "no screens"
+      },
+      {
+        "id": "B3",
+        "name": "Recognition pass",
+        "minutes": 80,
+        "content": "Tier B rapid-fire classification"
+      },
+      {
+        "id": "B2b",
+        "name": "Tier A grind",
+        "minutes": 120,
+        "content": "finish the day quota"
+      },
+      {
+        "id": "DINNER",
+        "name": "Dinner",
+        "minutes": 40,
+        "content": "movement already covered by morning gym"
+      },
+      {
+        "id": "B4",
+        "name": "Speed drill",
+        "minutes": 45,
+        "content": "timed re-solves (odd days) or CF ladder (even days)"
+      },
+      {
+        "id": "B5",
+        "name": "Review",
+        "minutes": 45,
+        "content": "pattern cards, shuffle review, day log, evidence card"
+      }
+    ],
+    "sunday_variant": "LC Weekly 08:00-09:30 IST replaces or lightens gym; anchor immediately after contest; contest problems credit Tier A quota.",
+    "cf_night_variant": "Round 20:05-22:05 IST replaces Blocks 4-5; next morning Block 0 contains exactly one upsolve."
+  },
+  "rules": {
+    "solve_protocol": "10/10/35: 0-10 min solo (classification typed before timer starts); checkpoint gate at 10 (continue, read approach only, or ask Coach); hard ceiling at 35 (solved, or read full solution then immediate re-implement from blank); non-solo outcomes logged; non-solved problems flagged for Day 19-20 pool.",
+    "debug_rule": "Bug surviving 10 minutes: stop re-reading code, dry-run smallest failing input on paper or print-trace.",
+    "pattern_card": "Every solve and every Tier B pass ends with a 60-second card: Trigger / Pattern / Trap.",
+    "tier_quota_floors": {
+      "tierA_per_day": 8,
+      "tierA_dp_graph_days": 6,
+      "tierB_per_day": 9
+    },
+    "overflow": "Unfinished Tier A rolls to next morning Block 0. Nothing silently dropped.",
+    "win_condition": "Day is WON iff quota (possibly compressed) is met, regardless of hint usage.",
+    "bad_day_protocol": "One button: trim tomorrow Tier B by 3, move remainder to overflow, close day. Never extend past sleep guard.",
+    "dp_keep_warm": "Days 1-5 only: Block 5 includes one 15-minute re-implement-from-blank of an earlier DP problem (climbing stairs, frog jump, grid paths - rotate).",
+    "upsolve": "Morning after any contest: exactly one upsolve (first unsolved problem) - editorial, close, re-implement from blank, card."
+  },
+  "contests": {
+    "lc_weekly": {
+      "time_ist": "08:00",
+      "days": [
+        3,
+        10,
+        17
+      ],
+      "mode": "live",
+      "credits_tierA": 4,
+      "targets": {
+        "day3": "2 solves",
+        "day10": "2-3 solves",
+        "day17": "3 solves"
+      }
+    },
+    "lc_biweekly": {
+      "time_ist": "20:00",
+      "pattern": "alternate Saturdays - user toggles which are live after checking parity",
+      "mode": "live"
+    },
+    "codeforces": {
+      "typical_time_ist": "20:05",
+      "live_rules": "Div 3 and Div 4 live, cap 3 rounds during Days 1-18; Div 2 only Days 19-20",
+      "ladder": {
+        "week1": "1100",
+        "week2": "1200",
+        "week3": "1300",
+        "per_problem_minutes": 25,
+        "problems_per_session": 2,
+        "source": "TLE CP-31 sheet — https://www.tle-eliminators.com/cp-sheet"
+      }
+    }
+  },
+  "supplements": [
+    "Set Matrix Zeroes",
+    "Kth Missing Positive Number",
+    "Subarrays with K Different Integers",
+    "Minimum Window Subsequence",
+    "Stock with Cooldown",
+    "Count Square Submatrices with All Ones",
+    "Median from Data Stream (two heaps)",
+    "Merge K Sorted Lists",
+    "Top K Frequent Elements",
+    "Task Scheduler",
+    "Hand of Straights",
+    "Design Twitter",
+    "Swim in Rising Water",
+    "Merge Overlapping Intervals",
+    "Longest Subarray with Sum 0",
+    "Count Occurrences in Sorted Array",
+    "Painter's Partition",
+    "Capacity to Ship Packages in D Days",
+    "Print LCS",
+    "Evaluate Boolean Expression to True",
+    "Fractional Knapsack",
+    "Jump Game II",
+    "Flatten Binary Tree to Linked List"
+  ],
+  "read_only": [
+    "Minimize Max Distance to Gas Station",
+    "Word Ladder II",
+    "Kosaraju's Algorithm",
+    "Bridges in Graph",
+    "Articulation Point in Graph"
+  ],
+  "days": [
+    {
+      "day": 1,
+      "date": "2026-06-12",
+      "weekday": "Fri",
+      "phase": "Foundations",
+      "focus": "Arrays I",
+      "tierA": [
+        "Two Sum",
+        "Sort an array of 0s 1s 2s (Dutch National Flag)",
+        "Majority Element (Moore's Voting)",
+        "Kadane's Algorithm - Maximum Subarray",
+        "Best Time to Buy and Sell Stock I",
+        "Rearrange Array Elements by Sign",
+        "Next Permutation",
+        "Longest Consecutive Sequence",
+        "Leaders in an Array"
+      ],
+      "tierB": [
+        "Linear Search",
+        "Largest Element",
+        "Second Largest Element",
+        "Maximum Consecutive Ones",
+        "Left Rotate Array by One",
+        "Left Rotate Array by K Places",
+        "Move Zeros to End",
+        "Remove Duplicates from Sorted Array",
+        "Find Missing Number",
+        "Union of Two Sorted Arrays",
+        "Intersection of Two Sorted Arrays",
+        "Single Number"
+      ],
+      "note": "Clear the entire Fundamentals + Logic Building block as Tier B - 2-3 minutes each.",
+      "contest": null
+    },
+    {
+      "day": 2,
+      "date": "2026-06-13",
+      "weekday": "Sat",
+      "phase": "Foundations",
+      "focus": "Arrays II",
+      "tierA": [
+        "Set Matrix Zeroes",
+        "Rotate Matrix by 90 Degrees",
+        "Spiral Matrix",
+        "Count Subarrays with Sum K (prefix sum + hashmap)",
+        "3-Sum",
+        "Majority Element II (n/3)",
+        "Merge Overlapping Intervals",
+        "Find the Repeating and Missing Number",
+        "Count Inversions (merge sort)"
+      ],
+      "tierB": [
+        "Pascal's Triangle",
+        "Pascal's Triangle II",
+        "Pascal's Triangle III",
+        "4-Sum",
+        "Longest Subarray with Sum 0",
+        "Count Subarrays with XOR K",
+        "Merge Two Sorted Arrays Without Extra Space",
+        "Reverse Pairs",
+        "Maximum Product Subarray",
+        "Selection Sort",
+        "Bubble Sort",
+        "Insertion Sort",
+        "Quick Sort"
+      ],
+      "note": "Crown pattern: prefix-sum + hashmap. Sum K, sum 0 and XOR K are one idea in three costumes. Sorting reads: selection/bubble/insertion/quick — merge is covered by Count Inversions, which also checks its Sorting box.",
+      "contest": null
+    },
+    {
+      "day": 3,
+      "date": "2026-06-14",
+      "weekday": "Sun",
+      "phase": "Foundations",
+      "focus": "Two Pointers + Sliding Window",
+      "tierA": [
+        "Longest Substring Without Repeating Characters",
+        "Max Consecutive Ones III",
+        "Binary Subarrays with Sum (atMost trick)",
+        "Longest Substring with At Most K Distinct Characters",
+        "Longest Repeating Character Replacement",
+        "Number of Substrings Containing All Three Characters",
+        "Minimum Window Substring"
+      ],
+      "tierB": [
+        "Fruit Into Baskets",
+        "Maximum Points You Can Obtain from Cards",
+        "Count Number of Nice Subarrays",
+        "Subarrays with K Different Integers",
+        "Minimum Window Subsequence"
+      ],
+      "note": "Mantra before every solve: expand right freely, shrink left while the invariant is broken. Learn atMost(k) - atMost(k-1) properly.",
+      "contest": {
+        "name": "LC Weekly",
+        "time_ist": "08:00",
+        "mode": "live",
+        "credits_tierA": 4
+      }
+    },
+    {
+      "day": 4,
+      "date": "2026-06-15",
+      "weekday": "Mon",
+      "phase": "Foundations",
+      "focus": "Binary Search I",
+      "tierA": [
+        "Implement lower_bound and upper_bound from scratch",
+        "First and Last Occurrence in Sorted Array",
+        "Search in Rotated Sorted Array I",
+        "Find Minimum in Rotated Sorted Array",
+        "Single Element in a Sorted Array",
+        "Find Peak Element",
+        "Koko Eating Bananas (first BS-on-answer)"
+      ],
+      "tierB": [
+        "Search Insert Position",
+        "Floor and Ceil in Sorted Array",
+        "Search in Rotated Sorted Array II",
+        "Count Occurrences in Sorted Array",
+        "Square Root and Nth Root via BS",
+        "Find How Many Times Array Has Been Rotated"
+      ],
+      "note": "One mental model owns the topic: every binary search finds the first index where a monotone predicate flips false to true.",
+      "contest": null
+    },
+    {
+      "day": 5,
+      "date": "2026-06-16",
+      "weekday": "Tue",
+      "phase": "Foundations",
+      "focus": "BS on Answer + 2D",
+      "tierA": [
+        "Aggressive Cows",
+        "Allocate Books",
+        "Kth Missing Positive Number",
+        "Search in a 2D Matrix II (staircase)",
+        "Median of Two Sorted Arrays"
+      ],
+      "tierB": [
+        "Split Array Largest Sum",
+        "Painter's Partition",
+        "Find Smallest Divisor",
+        "Capacity to Ship Packages in D Days",
+        "Minimum Days to Make M Bouquets",
+        "Kth Element of Two Sorted Arrays",
+        "Row with Maximum 1s",
+        "Search in a 2D Matrix",
+        "Find Peak Element II",
+        "Median of Row-wise Sorted Matrix"
+      ],
+      "note": "BS-on-answer is the 1:1 interview/Codeforces crossover - today pays double. Minimize Max Distance to Gas Station is a Day 18 read-only.",
+      "contest": null
+    },
+    {
+      "day": 6,
+      "date": "2026-06-17",
+      "weekday": "Wed",
+      "phase": "DP completion",
+      "focus": "DP on Subsequences",
+      "tierA": [
+        "Subset Sum Equals K",
+        "Count Subsets with Sum K",
+        "Partition Equal Subset Sum",
+        "0/1 Knapsack",
+        "Coin Change (minimum coins)",
+        "Coin Change II (count ways)"
+      ],
+      "tierB": [
+        "Target Sum",
+        "Count Partitions with Given Difference",
+        "Minimum Subset Sum Difference",
+        "Unbounded Knapsack",
+        "Rod Cutting"
+      ],
+      "note": "Four-variant matrix: {0/1, unbounded} x {optimize, count}. Full 4-step pipeline on Subset Sum and 0/1 Knapsack only; memoization-only on the rest.",
+      "contest": null
+    },
+    {
+      "day": 7,
+      "date": "2026-06-18",
+      "weekday": "Thu",
+      "phase": "DP completion",
+      "focus": "DP on Strings + Stocks",
+      "tierA": [
+        "Longest Common Subsequence",
+        "Longest Common Substring",
+        "Edit Distance",
+        "Distinct Subsequences",
+        "Best Time to Buy and Sell Stock II",
+        "Best Time to Buy and Sell Stock III"
+      ],
+      "tierB": [
+        "Print LCS",
+        "Longest Palindromic Subsequence",
+        "Minimum Insertions/Deletions to Convert String",
+        "Shortest Common Supersequence",
+        "Wildcard Matching",
+        "Buy and Sell Stock IV",
+        "Stock with Cooldown",
+        "Stock with Transaction Fee"
+      ],
+      "note": "The LCS table is the mother - six Tier B problems today are arithmetic on it.",
+      "contest": null
+    },
+    {
+      "day": 8,
+      "date": "2026-06-19",
+      "weekday": "Fri",
+      "phase": "DP completion",
+      "focus": "DP on LIS + MCM/Partition",
+      "tierA": [
+        "Longest Increasing Subsequence (n^2 DP)",
+        "LIS in n log n (binary search)",
+        "Matrix Chain Multiplication",
+        "Burst Balloons",
+        "Palindrome Partitioning II",
+        "Count Square Submatrices with All Ones"
+      ],
+      "tierB": [
+        "Print LIS",
+        "Largest Divisible Subset",
+        "Longest String Chain",
+        "Longest Bitonic Subsequence",
+        "Number of LIS",
+        "Minimum Cost to Cut the Stick",
+        "Evaluate Boolean Expression to True"
+      ],
+      "note": "Burst Balloons insight: think about which balloon pops LAST. Maximal Rectangle deferred to Day 15 (needs histogram).",
+      "contest": null
+    },
+    {
+      "day": 9,
+      "date": "2026-06-20",
+      "weekday": "Sat",
+      "phase": "Trees",
+      "focus": "Trees I",
+      "tierA": [
+        "Traversal block: inorder + preorder + postorder + level order",
+        "Maximum Depth of Binary Tree",
+        "Check for Balanced Binary Tree",
+        "Diameter of Binary Tree",
+        "Maximum Path Sum",
+        "Symmetric Tree"
+      ],
+      "tierB": [
+        "Zigzag Level Order Traversal",
+        "Boundary Traversal",
+        "Left and Right View",
+        "Top and Bottom View",
+        "Print Root to Leaf Paths",
+        "Pre, Post, Inorder in One Traversal",
+        "Check if Two Trees are Identical"
+      ],
+      "note": "One pattern powers four solves: return information upward, update the answer globally.",
+      "contest": null
+    },
+    {
+      "day": 10,
+      "date": "2026-06-21",
+      "weekday": "Sun",
+      "phase": "Trees",
+      "focus": "Trees II",
+      "tierA": [
+        "Lowest Common Ancestor in Binary Tree",
+        "Vertical Order Traversal",
+        "Maximum Width of Binary Tree",
+        "Construct Binary Tree from Preorder and Inorder",
+        "Serialize and Deserialize Binary Tree",
+        "All Nodes at Distance K"
+      ],
+      "tierB": [
+        "Construct from Postorder and Inorder",
+        "Requirements to Construct a Unique BT (theory)",
+        "Minimum Time to Burn Binary Tree",
+        "Count Nodes in Complete Binary Tree",
+        "Flatten Binary Tree to Linked List",
+        "Morris Inorder Traversal (read only)",
+        "Morris Preorder Traversal"
+      ],
+      "note": null,
+      "contest": {
+        "name": "LC Weekly",
+        "time_ist": "08:00",
+        "mode": "live",
+        "credits_tierA": 4
+      }
+    },
+    {
+      "day": 11,
+      "date": "2026-06-22",
+      "weekday": "Mon",
+      "phase": "Trees",
+      "focus": "BST + LL Fundamentals + Sieve",
+      "tierA": [
+        "Validate BST",
+        "Kth Smallest Element in BST",
+        "BST Iterator",
+        "Recover BST (two swapped nodes)",
+        "Largest BST in Binary Tree"
+      ],
+      "tierB": [
+        "Search in BST",
+        "Insert a Given Node in BST",
+        "Delete a Node in BST",
+        "Floor and Ceil in BST",
+        "LCA in BST",
+        "Two Sum in BST",
+        "Inorder Successor and Predecessor",
+        "Construct BST from Preorder",
+        "Introduction to Singly LinkedList",
+        "Traversal in Linked List",
+        "Deletion in Linked List",
+        "Insertion in Linked List",
+        "Deletion of the Head of LL",
+        "Deletion of the Tail of LL",
+        "Deletion of the Kth Element of LL",
+        "Delete the Element with Value X",
+        "Insertion at the Head of LL",
+        "Insertion at the Tail of LL",
+        "Insertion at the Kth Position of LL",
+        "Insertion Before the Value X in LL",
+        "Introduction to Doubly LL",
+        "Deletion in Doubly LL",
+        "Insertion in DLL",
+        "Convert Array to Doubly Linked List",
+        "Delete Head of Doubly LL",
+        "Delete Tail of Doubly LL",
+        "Delete Kth Element of Doubly LL",
+        "Removing Given Node in Doubly LL",
+        "Insert Node Before Head in Doubly LL",
+        "Insert Node Before Tail in Doubly LL",
+        "Insert Node Before Kth Node in Doubly LL",
+        "Insert Before Given Node in Doubly LL",
+        "Print All Primes till N (Sieve of Eratosthenes)",
+        "Prime Factorisation of a Number (SPF)",
+        "Count Primes in Range L to R"
+      ],
+      "note": "BST is a half-day; the 24 LL CRUD items run 1-3 minutes each - a recognition marathon, not a grind. Card binary exponentiation alongside the sieve trio. Evening graph-representation re-skim.",
+      "contest": null
+    },
+    {
+      "day": 12,
+      "date": "2026-06-23",
+      "weekday": "Tue",
+      "phase": "Graphs",
+      "focus": "Graphs I: traversal, cycles, topo",
+      "tierA": [
+        "BFS and DFS implementation (adjacency list)",
+        "Number of Provinces",
+        "Rotten Oranges (multi-source BFS)",
+        "Detect Cycle in Undirected Graph",
+        "Detect Cycle in Directed Graph (colors)",
+        "Topological Sort (DFS + Kahn's)",
+        "Course Schedule II",
+        "Bipartite Graph Check"
+      ],
+      "tierB": [
+        "Flood Fill",
+        "0/1 Matrix",
+        "Surrounded Regions",
+        "Number of Enclaves",
+        "Number of Islands",
+        "Number of Distinct Islands",
+        "Course Schedule I",
+        "Eventual Safe States"
+      ],
+      "note": null,
+      "contest": null
+    },
+    {
+      "day": 13,
+      "date": "2026-06-24",
+      "weekday": "Wed",
+      "phase": "Graphs",
+      "focus": "Graphs II: shortest paths (coaching day)",
+      "tierA": [
+        "Shortest Path in Unweighted Graph (BFS)",
+        "Word Ladder I",
+        "Alien Dictionary [COACHED]",
+        "Dijkstra's Algorithm [COACHED - priority_queue pickup]",
+        "Cheapest Flights Within K Stops",
+        "Bellman-Ford"
+      ],
+      "tierB": [
+        "Shortest Path in Binary Maze",
+        "Path with Minimum Effort",
+        "Number of Ways to Arrive at Destination",
+        "Print Shortest Path",
+        "Minimum Multiplications to Reach End",
+        "Shortest Path in DAG",
+        "Floyd-Warshall (read, know the three loops)",
+        "City with Smallest Number of Neighbours"
+      ],
+      "note": "Word Ladder II is a Day 18 read-only.",
+      "contest": null
+    },
+    {
+      "day": 14,
+      "date": "2026-06-25",
+      "weekday": "Thu",
+      "phase": "Graphs",
+      "focus": "Graphs III: DSU + MST + graph sweep",
+      "tierA": [
+        "Disjoint Set Union - by size + path compression [COACHED]",
+        "Kruskal's MST",
+        "Accounts Merge",
+        "Minimum Operations to Make Network Connected"
+      ],
+      "tierB": [
+        "Prim's MST",
+        "Most Stones Removed with Same Row or Column",
+        "Making a Large Island (sketch only)",
+        "Number of Islands II",
+        "Swim in Rising Water"
+      ],
+      "note": "Sweep day: every remaining graph checkbox gets touched by tonight.",
+      "contest": null
+    },
+    {
+      "day": 15,
+      "date": "2026-06-26",
+      "weekday": "Fri",
+      "phase": "Compression",
+      "focus": "Stacks and Queues (monotonic stack day)",
+      "tierA": [
+        "Next Greater Element",
+        "Trapping Rain Water",
+        "Largest Rectangle in Histogram",
+        "Maximal Rectangle (closes the Day 8 loop)",
+        "Sum of Subarray Minimums (contribution technique)",
+        "Remove K Digits",
+        "Asteroid Collision",
+        "Sliding Window Maximum (monotonic deque)",
+        "LRU Cache"
+      ],
+      "tierB": [
+        "Next Greater Element II",
+        "Online Stock Span",
+        "Sum of Subarray Ranges",
+        "The Celebrity Problem",
+        "Min Stack",
+        "LFU Cache (design read)",
+        "Implementation using different DS",
+        "Implement Stack using Arrays",
+        "Implement Queue using Arrays",
+        "Implement Stack using Queue",
+        "Implement Queue using Stack",
+        "Implement Stack using Linked List",
+        "Implement Queue using Linked List",
+        "Balanced Parenthesis"
+      ],
+      "note": "The implementation eight are reads with a mental sketch - the monotonic-stack Tier A is where the day's blood goes.",
+      "contest": null
+    },
+    {
+      "day": 16,
+      "date": "2026-06-27",
+      "weekday": "Sat",
+      "phase": "Compression",
+      "focus": "Heaps + Greedy finish",
+      "tierA": [
+        "Kth Largest Element",
+        "Kth Largest Element in a Stream",
+        "Heapify & Build-Heap (one unit)",
+        "Top K Frequent Elements",
+        "Merge K Sorted Lists",
+        "Median from Data Stream (two heaps)",
+        "Task Scheduler",
+        "Jump Game II",
+        "Job Sequencing",
+        "Minimum Platforms"
+      ],
+      "tierB": [
+        "Hand of Straights",
+        "Design Twitter",
+        "Fractional Knapsack",
+        "Lemonade Change",
+        "Assign Cookies",
+        "Jump Game I",
+        "Valid Parenthesis Checker",
+        "Shortest Job First",
+        "Candy",
+        "Insert Interval",
+        "Non-overlapping Intervals"
+      ],
+      "note": "Swap out any greedy already completed from the existing Tier 1-2 progress; tell Coach that morning and substitute the next-best.",
+      "contest": null
+    },
+    {
+      "day": 17,
+      "date": "2026-06-28",
+      "weekday": "Sun",
+      "phase": "Compression",
+      "focus": "Linked List II + Tries",
+      "tierA": [
+        "Reverse Linked List",
+        "Detect Cycle + Find Cycle Start (Floyd's)",
+        "Merge Two Sorted Lists",
+        "Remove Nth Node from End",
+        "Add Two Numbers",
+        "Reverse Nodes in K Groups",
+        "Copy List with Random Pointer",
+        "Implement Trie",
+        "Maximum XOR of Two Numbers (bit trie)"
+      ],
+      "tierB": [
+        "Add One to a Number Represented by LL",
+        "Delete the Middle Node in LL",
+        "Length of Loop in LL",
+        "Sort a LL of 0s 1s and 2s",
+        "Middle of Linked List",
+        "Palindrome Linked List",
+        "Intersection of Two Linked Lists",
+        "Rotate Linked List",
+        "Flatten Linked List",
+        "Sort Linked List",
+        "Delete All Occurrences of a Key in DLL",
+        "Remove Duplicates from Sorted DLL",
+        "Trie Implementation and Advanced Operations",
+        "Longest Word with All Prefixes",
+        "Number of Distinct Substrings in a String",
+        "Maximum XOR with Element from Array"
+      ],
+      "note": "LL problems run 10-15 minutes each. Quant firms love Max XOR. CRUD fundamentals already cleared on Day 11.",
+      "contest": {
+        "name": "LC Weekly",
+        "time_ist": "08:00",
+        "mode": "live",
+        "credits_tierA": 4
+      }
+    },
+    {
+      "day": 18,
+      "date": "2026-06-29",
+      "weekday": "Mon",
+      "phase": "Compression",
+      "focus": "KMP + bit cleanup + THE GREAT SWEEP",
+      "tierA": [
+        "KMP / LPS Array (understand the failure function)",
+        "Single Number II",
+        "Single Number III",
+        "Overflow-log flagged items"
+      ],
+      "tierB": [
+        "Z-Function (read, CF-relevant)",
+        "Rabin-Karp (read, rolling hash)",
+        "Shortest Palindrome",
+        "Count and Say",
+        "Minimum Bit Flips",
+        "XOR of Numbers in a Given Range",
+        "Power Set (bitmask)",
+        "Reverse Every Word in a String",
+        "Minimum Bracket Reversals",
+        "Longest Happy Prefix",
+        "Minimize Max Distance to Gas Station",
+        "Word Ladder II",
+        "Kosaraju's Algorithm",
+        "Bridges in Graph",
+        "Articulation Point in Graph",
+        "ALL remaining unchecked sheet boxes - 3 to 4 hour sweep"
+      ],
+      "note": "End of day: 435/435 touched. Generate the evidence card. This is the proof. The sweep includes Beginner-module stragglers (1-minute checks are legitimate) and verifies the backtracking set (N-Queens, Sudoku, Word Search, M-Coloring) - any unchecked join the sweep; N-Queens as a full solve if unchecked.",
+      "contest": null
+    },
+    {
+      "day": 19,
+      "date": "2026-06-30",
+      "weekday": "Tue",
+      "phase": "Integration",
+      "focus": "Integration I",
+      "tierA": [],
+      "tierB": [],
+      "tasks": [
+        "90-minute mock: 4 mixed-topic problems, interview conditions",
+        "Full post-mortem",
+        "LC virtual contest (recent Weekly, timed)",
+        "Re-implement the 5 worst-flagged problems from blank"
+      ],
+      "note": "Mock generator samples across topics weighted toward weak/flagged.",
+      "contest": {
+        "name": "CF round if scheduled",
+        "time_ist": "20:05",
+        "mode": "optional-live"
+      }
+    },
+    {
+      "day": 20,
+      "date": "2026-07-01",
+      "weekday": "Wed",
+      "phase": "Integration",
+      "focus": "Integration II",
+      "tierA": [],
+      "tierB": [],
+      "tasks": [
+        "Harder mock set",
+        "Second virtual contest, or live CF if one falls tonight",
+        "Final weak-spot patches from the log",
+        "Light evening - sharp, not fried, for July 2nd"
+      ],
+      "note": "End-of-sprint report: total solves, solo rate, average solve time curve, topic radar, the 77 to 435 arc.",
+      "contest": {
+        "name": "CF round if scheduled",
+        "time_ist": "20:05",
+        "mode": "optional-live"
+      }
+    }
+  ]
+}

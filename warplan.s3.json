@@ -1,0 +1,148 @@
+{
+  "meta": { "season": 3, "version": 1, "start": "2026-07-17", "end": "2026-07-26",
+    "note": "The 10-day crunch spine. Floor = non-negotiable. Target = a good day. Stretch = auto-drops, guilt-free. Only unfinished FLOOR/TARGET work rolls forward, one day max. ~6 focused hours/day + 1 optional; the 23:00 sleep guard always wins." },
+  "days": [
+    { "d": 1, "date": "2026-07-17", "title": "Diagnostic", "focus": "Baseline every gate — no studying today, just honest measurement.",
+      "floor": [
+        { "id": "d1-f1", "label": "Blind classification baseline — 15 rapid-fire names", "go": "#/rapidfire" },
+        { "id": "d1-f2", "label": "1 full blind Arena solve (any serve)", "go": "#/arena" },
+        { "id": "d1-f3", "label": "Cold probes: OS u1-u2 + DBMS u1 (answer BEFORE reading)", "go": "#/doctrine" },
+        { "id": "d1-f4", "label": "Write your 30s + 2min pitch for every project", "go": "#/grill" }
+      ],
+      "target": [
+        { "id": "d1-t1", "label": "2nd blind Arena solve", "go": "#/arena" },
+        { "id": "d1-t2", "label": "Ownership audit — fill the ownership matrix for every project", "go": "#/grill" },
+        { "id": "d1-t3", "label": "1 cold LLD baseline (Parking Lot, no reading first)", "go": "#/doctrine" }
+      ],
+      "stretch": [
+        { "id": "d1-s1", "label": "Draft 2 STAR stories", "go": "#/command" },
+        { "id": "d1-s2", "label": "CN cold probes u1-u2", "go": "#/doctrine" }
+      ] },
+    { "d": 2, "date": "2026-07-18", "title": "Foundations I", "focus": "OS deep + project #1 defense. Blind reps daily from here on.",
+      "floor": [
+        { "id": "d2-f1", "label": "2 blind Arena solves", "go": "#/arena" },
+        { "id": "d2-f2", "label": "OS u1-u3: probe → read → recall", "go": "#/doctrine" },
+        { "id": "d2-f3", "label": "Project #1: read claims ledger + drill 10 questions", "go": "#/grill" }
+      ],
+      "target": [
+        { "id": "d2-t1", "label": "1 assisted DP repair rep", "go": "#/arena" },
+        { "id": "d2-t2", "label": "OS u4 (memory): probe → read → recall", "go": "#/doctrine" },
+        { "id": "d2-t3", "label": "Project #1 whiteboard: derive its core formula/objective from scratch", "go": "#/grill" }
+      ],
+      "stretch": [
+        { "id": "d2-s1", "label": "OS u5", "go": "#/doctrine" },
+        { "id": "d2-s2", "label": "Produce gauntlet run", "go": "#/gauntlet" }
+      ] },
+    { "d": 3, "date": "2026-07-19", "title": "Foundations II", "focus": "DBMS/SQL deep + project #2 defense.",
+      "floor": [
+        { "id": "d3-f1", "label": "2 blind Arena solves", "go": "#/arena" },
+        { "id": "d3-f2", "label": "DBMS u1-u3: probe → read → recall", "go": "#/doctrine" },
+        { "id": "d3-f3", "label": "Project #2: claims ledger + drill 10 questions", "go": "#/grill" }
+      ],
+      "target": [
+        { "id": "d3-t1", "label": "1 assisted graph repair rep", "go": "#/arena" },
+        { "id": "d3-t2", "label": "DBMS u4: 6 write-the-query drills", "go": "#/doctrine" },
+        { "id": "d3-t3", "label": "Project #2 whiteboard: derive its core formula/objective from scratch", "go": "#/grill" }
+      ],
+      "stretch": [
+        { "id": "d3-s1", "label": "DBMS u5 (CAP/NoSQL)", "go": "#/doctrine" },
+        { "id": "d3-s2", "label": "Due D+1 re-solves", "go": "#/arena" }
+      ] },
+    { "d": 4, "date": "2026-07-20", "title": "Systems", "focus": "Networks + project #3's math, cold.",
+      "floor": [
+        { "id": "d4-f1", "label": "2 blind Arena + all due re-solves", "go": "#/arena" },
+        { "id": "d4-f2", "label": "CN u1-u2: probe → read → recall", "go": "#/doctrine" },
+        { "id": "d4-f3", "label": "Paper: claims + whiteboard (s^65537 trace, key-size table)", "go": "#/grill" }
+      ],
+      "target": [
+        { "id": "d4-t1", "label": "CN u3 (HTTP/TLS/DNS)", "go": "#/doctrine" },
+        { "id": "d4-t2", "label": "Paper: drill 10 questions + landmine round", "go": "#/grill" }
+      ],
+      "stretch": [
+        { "id": "d4-s1", "label": "CN u4", "go": "#/doctrine" },
+        { "id": "d4-s2", "label": "Bank 2 cross-subject synth cards", "go": "#/corecs" }
+      ] },
+    { "d": 5, "date": "2026-07-21", "title": "Midpoint pressure", "focus": "First timed OA + C++ depth begins + first cold LLD.",
+      "floor": [
+        { "id": "d5-f1", "label": "90-min OA simulation + wrong-answer autopsy", "go": "#/oa" },
+        { "id": "d5-f2", "label": "C++ u1-u3: probe → read → recall", "go": "#/doctrine" },
+        { "id": "d5-f3", "label": "Cold LLD build #1 (graded, no peeking)", "go": "#/doctrine" }
+      ],
+      "target": [
+        { "id": "d5-t1", "label": "C++ u4 (moves/rule of 5)", "go": "#/doctrine" },
+        { "id": "d5-t2", "label": "Cross-project drill: 5 questions each project", "go": "#/grill" },
+        { "id": "d5-t3", "label": "Due re-solves", "go": "#/arena" }
+      ],
+      "stretch": [
+        { "id": "d5-s1", "label": "C++ u5 (STL internals)", "go": "#/doctrine" },
+        { "id": "d5-s2", "label": "Mock grill: project #1 (Coach interviewer)", "go": "#/grill" }
+      ] },
+    { "d": 6, "date": "2026-07-22", "title": "Design depth", "focus": "C++ internals done + first cold HLD.",
+      "floor": [
+        { "id": "d6-f1", "label": "2 blind Arena + due re-solves", "go": "#/arena" },
+        { "id": "d6-f2", "label": "C++ u5-u6: probe → read → recall", "go": "#/doctrine" },
+        { "id": "d6-f3", "label": "Cold HLD build #1 (estimation arithmetic included)", "go": "#/doctrine" }
+      ],
+      "target": [
+        { "id": "d6-t1", "label": "Project whiteboards: remaining items on projects #1 and #2", "go": "#/grill" },
+        { "id": "d6-t2", "label": "SOLID unit (extra u1)", "go": "#/doctrine" }
+      ],
+      "stretch": [
+        { "id": "d6-s1", "label": "Produce gauntlet", "go": "#/gauntlet" },
+        { "id": "d6-s2", "label": "Project #2 landmine round", "go": "#/grill" }
+      ] },
+    { "d": 7, "date": "2026-07-23", "title": "Mock 1", "focus": "Full-pressure rehearsal, then repair what it exposes.",
+      "floor": [
+        { "id": "d7-f1", "label": "Full 5-round mock interview + honest self-ratings", "go": "#/interview" },
+        { "id": "d7-f2", "label": "Repair block: attack today's weakest gate", "go": "#/warplan" },
+        { "id": "d7-f3", "label": "Mock grill: project #2 (Coach interviewer)", "go": "#/grill" }
+      ],
+      "target": [
+        { "id": "d7-t1", "label": "STAR mining: 4 stories banked total", "go": "#/command" },
+        { "id": "d7-t2", "label": "Due re-solves", "go": "#/arena" }
+      ],
+      "stretch": [
+        { "id": "d7-s1", "label": "Linux unit (extra u2)", "go": "#/doctrine" },
+        { "id": "d7-s2", "label": "15 rapid-fire classifications", "go": "#/rapidfire" }
+      ] },
+    { "d": 8, "date": "2026-07-24", "title": "Consolidation", "focus": "Delayed recall day — everything due comes back.",
+      "floor": [
+        { "id": "d8-f1", "label": "2 blind Arena + ALL due D+1/D+3 re-solves", "go": "#/arena" },
+        { "id": "d8-f2", "label": "Weakest theory units (whatever the gates say)", "go": "#/doctrine" },
+        { "id": "d8-f3", "label": "Cold LLD build #2", "go": "#/doctrine" }
+      ],
+      "target": [
+        { "id": "d8-t1", "label": "Landmine drills — every project", "go": "#/grill" },
+        { "id": "d8-t2", "label": "SQL round 2: 6 more write-the-query", "go": "#/doctrine" }
+      ],
+      "stretch": [
+        { "id": "d8-s1", "label": "Produce gauntlet", "go": "#/gauntlet" },
+        { "id": "d8-s2", "label": "Git unit (extra u3)", "go": "#/doctrine" }
+      ] },
+    { "d": 9, "date": "2026-07-25", "title": "Mock 2", "focus": "Second full rehearsal + final project defense.",
+      "floor": [
+        { "id": "d9-f1", "label": "Full 5-round mock interview #2", "go": "#/interview" },
+        { "id": "d9-f2", "label": "Repair the two weakest gates", "go": "#/warplan" },
+        { "id": "d9-f3", "label": "Mock grill: project #3 (hard mode)", "go": "#/grill" }
+      ],
+      "target": [
+        { "id": "d9-t1", "label": "Behavioral polish: 6 STAR stories complete", "go": "#/command" },
+        { "id": "d9-t2", "label": "Re-time all 3 pitches (30s / 2min)", "go": "#/grill" }
+      ],
+      "stretch": [
+        { "id": "d9-s1", "label": "Testing/debugging unit (extra u4)", "go": "#/doctrine" }
+      ] },
+    { "d": 10, "date": "2026-07-26", "title": "Taper", "focus": "NO new material. Warm, recall, recite, sleep.",
+      "floor": [
+        { "id": "d10-f1", "label": "1 easy warm-up solve (confidence, not challenge)", "go": "#/arena" },
+        { "id": "d10-f2", "label": "Due re-solves only", "go": "#/arena" },
+        { "id": "d10-f3", "label": "Must-know recall sweep: rapid across all subjects", "go": "#/doctrine" },
+        { "id": "d10-f4", "label": "Recite all 3 pitches + landmine answers out loud", "go": "#/grill" }
+      ],
+      "target": [
+        { "id": "d10-t1", "label": "Interview-day protocol review", "go": "#/command" },
+        { "id": "d10-t2", "label": "In bed by 23:00 — the sleep guard is the law", "go": "#/" }
+      ],
+      "stretch": [] }
+  ]
+}

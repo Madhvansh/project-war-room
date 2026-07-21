@@ -1,0 +1,31 @@
+# ── YOUR RECORD — never commit this ─────────────────────────────────────────
+# Everything you do lives here: solve log, pattern cards, sealed days, evidence
+# screenshots, Coach transcripts, and data/config.json (your name, start date).
+data/
+
+# test + demo sandboxes
+data-sandbox/
+data-demo/
+
+# ── YOUR PROJECT DOSSIERS — private by default ──────────────────────────────
+# The Grill Room briefs an AI interviewer on YOUR projects. That file describes
+# your work, your weak points and your repos in detail — it is not something to
+# publish. Write it by copying grill.example.json; it stays on your machine.
+grill.s3.json
+
+# trigger-bank chunk cache (problems.json is the committed artifact)
+build/
+
+# API keys / local env
+.env
+.env.local
+
+node_modules/
+
+# editor + OS noise
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+tmp/

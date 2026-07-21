@@ -1,0 +1,35 @@
+{
+  "name": "project-war-room",
+  "version": "1.0.0",
+  "description": "A local-first war room for grinding the Striver A2Z / TUF+ DSA sheet and the rest of the placement gauntlet — timed solves, spaced repetition, blind pattern reps, core-CS recall, system design, OA sims and mock interviews. Zero dependencies.",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.17"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "setup": "node scripts/setup.mjs",
+    "test": "node scripts/laws.mjs",
+    "smoke": "node scripts/smoke.mjs",
+    "demo": "node scripts/demo.mjs"
+  },
+  "keywords": [
+    "dsa",
+    "leetcode",
+    "striver",
+    "a2z",
+    "takeuforward",
+    "interview-prep",
+    "spaced-repetition",
+    "competitive-programming",
+    "system-design",
+    "local-first"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Madhvansh/project-war-room.git"
+  },
+  "private": false
+}

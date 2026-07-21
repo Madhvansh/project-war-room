@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PROJECT WAR ROOM</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/app.css">
+  <!-- PWA (opt-in): inert until a ?pwa=1 visit registers the worker (see below) -->
+  <meta name="theme-color" content="#0b0e13">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" href="/icon-192.png">
+</head>
+<body>
+  <header id="hdr"></header>
+  <main id="view"></main>
+  <div id="modal-root"></div>
+  <script>
+    // surface any runtime error as a visible strip instead of a silent dead app
+    window.addEventListener('error', e => {
+      document.body.insertAdjacentHTML('afterbegin',
+        `<div style="background:#7f1d1d;color:#fff;padding:6px 12px;font-family:monospace" data-errtrap>JS ERROR: ${e.message} @ ${e.filename}:${e.lineno}</div>`);
+    });
+    window.addEventListener('unhandledrejection', e => {
+      document.body.insertAdjacentHTML('afterbegin',
+        `<div style="background:#7f1d1d;color:#fff;padding:6px 12px;font-family:monospace" data-errtrap>UNHANDLED: ${e.reason}</div>`);
+    });
+  </script>
+  <script>
+    // PWA opt-in: one visit to ?pwa=1 (e.g. on the phone over Tailscale) latches
+    // it on; thereafter the worker registers on every load. Default localhost and
+    // the headless-Edge audit never set it, so they stay byte-identical.
+    if (location.search.includes('pwa=1')) localStorage.setItem('p435.pwa', '1');
+    if (localStorage.getItem('p435.pwa') === '1' && 'serviceWorker' in navigator)
+      navigator.serviceWorker.register('/sw.js').catch(() => {});
+  </script>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

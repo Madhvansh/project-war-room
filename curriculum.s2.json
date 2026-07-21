@@ -1,0 +1,111 @@
+{
+  "meta": {
+    "season": 2,
+    "note": "Season-2 STATIC config (Regime 2). Served from ROOT like curriculum.json/problems.json — NOT in data/, so it is outside the audit hash guard. The frozen curriculum.json is never touched. Track STATE lives in data/*.json; this file is read-only content: the schedule, the DP subtopic map, the CF bands, the core-CS catalog (OS≈DBMS→CN→OOP), and the LLD/HLD spines.",
+    "core_cs_priority": ["OS", "DBMS", "CN", "OOP"],
+    "oa_target_band": "1800-1900"
+  },
+
+  "schedule_template_s2": {
+    "wake": "07:00",
+    "anchor_window": ["09:30", "10:30"],
+    "sleep_guard_s2": {
+      "hard_stop": "23:00",
+      "in_bed": "23:30",
+      "compress_when_projected_end_after": "22:00",
+      "cut_order_note": "System Design → CF-Ascent → DP-from-LC → Core-CS",
+      "never_trim": ["durability review (S5)", "DSA spine (S0/S1/S2)"]
+    },
+    "blocks": [
+      { "id": "S0", "name": "B0 — Overflow + Resurface", "minutes": 40, "content": "overflow queue + last night's MISSED cards (all tracks, decay-risk first) + 1 warm-up re-solve" },
+      { "id": "S1", "name": "B1 — DSA new topic", "minutes": 110, "content": "lecture @2x + canonical Tier A under 10/10/35 (the spine)" },
+      { "id": "SBREAK1", "name": "Break", "minutes": 15, "content": "off screen" },
+      { "id": "S2", "name": "B2 — Tier-A grind", "minutes": 80, "content": "finish core Tier A, 10/10/35" },
+      { "id": "SCORECS", "name": "Core-CS recall", "minutes": 35, "content": "RecallArena active-production block (priority subject) — produce, then check" },
+      { "id": "SLUNCH", "name": "Lunch", "minutes": 45, "content": "no screens" },
+      { "id": "S3", "name": "B3 — Tier-B recognition", "minutes": 55, "content": "rapid-fire classification (§3.2)" },
+      { "id": "SDP", "name": "DP-from-LeetCode", "minutes": 50, "content": "1–2 hard LC DP matched to today's subtopic, or weak-DP keep-warm" },
+      { "id": "SBREAK2", "name": "Break", "minutes": 15, "content": "off screen" },
+      { "id": "SCF", "name": "CF-Ascent climb", "minutes": 70, "content": "1 band problem + 1 ladder, strict clocks; toward 1800-1900" },
+      { "id": "SSYSD", "name": "System Design", "minutes": 50, "content": "LLD Mon/Wed/Fri · HLD Tue/Thu · machine-code Sat → produce an artifact" },
+      { "id": "SDINNER", "name": "Dinner", "minutes": 40, "content": "movement already covered by the morning gym" },
+      { "id": "S4", "name": "B4 — Speed drill", "minutes": 40, "content": "blank re-solves / CF ladder (§3.7)" },
+      { "id": "S5", "name": "B5 — Durability review", "minutes": 55, "content": "unified Leitner shuffle (ALL tracks) + cards + day log + evidence card — never trimmed" }
+    ]
+  },
+
+  "dp_lc": {
+    "note": "On a DP curriculum day (Striver Days 6-8) serve a hard LC problem from that subtopic; on other days, weak-DP keep-warm. Each solve cards the state-definition + transition + the trap; the deck later asks you to re-derive the recurrence from blank.",
+    "subtopics": {
+      "1D / linear": ["Decode Ways", "Word Break", "Longest Valid Parentheses", "House Robber II", "Maximum Product Subarray"],
+      "Grids / 2D": ["Minimum Path Sum", "Dungeon Game", "Cherry Pickup", "Cherry Pickup II", "Triangle"],
+      "Subsequence / knapsack": ["Target Sum", "Ones and Zeroes", "Last Stone Weight II", "Profitable Schemes", "Partition Equal Subset Sum"],
+      "Strings / LCS": ["Edit Distance", "Distinct Subsequences", "Interleaving String", "Regular Expression Matching", "Wildcard Matching"],
+      "Stocks": ["Best Time to Buy and Sell Stock IV", "Best Time to Buy and Sell Stock with Cooldown", "Best Time to Buy and Sell Stock with Transaction Fee"],
+      "LIS": ["Russian Doll Envelopes", "Number of Longest Increasing Subsequence", "Longest String Chain", "Maximum Height by Stacking Cuboids"],
+      "MCM / interval": ["Burst Balloons", "Minimum Cost to Cut a Stick", "Strange Printer", "Remove Boxes", "Palindrome Partitioning II"],
+      "Squares / matrix": ["Maximal Square", "Maximal Rectangle", "Count Square Submatrices with All Ones"],
+      "Bitmask DP": ["Partition to K Equal Sum Subsets", "Shortest Path Visiting All Nodes", "Maximum Students Taking Exam"],
+      "Digit DP (stretch)": ["Numbers With Repeated Digits", "Count of Integers", "Count Numbers with Unique Digits"]
+    }
+  },
+
+  "cf_ascent": {
+    "note": "Above the FROZEN §3.7 ladder (1100/1200/1300) — a higher OA band. Reads live rating from /api/cf (set cf_handle in data/config.json). Unsolved → CP-pattern card (binary-search-on-answer, greedy/exchange, constructive, number theory, graph, DP).",
+    "start_rating": 1291,
+    "target": 1850,
+    "bands": [
+      { "phase": "Days 1-5", "band": "1400-1500", "focus": "Div2 A/B + easy C: constructive, greedy, math, two-pointer" },
+      { "phase": "Days 6-12", "band": "1500-1700", "focus": "Div2 C / easy D: BS-on-answer, DP, graphs, number theory" },
+      { "phase": "Days 13-21", "band": "1700-1900", "focus": "Div2 D: harder DP, combinatorics, advanced greedy/constructive" }
+    ],
+    "cp_patterns": ["binary-search-on-answer", "greedy / exchange argument", "constructive", "number theory", "graph", "DP", "two-pointer / sliding window", "bitmask", "combinatorics / counting"]
+  },
+
+  "corecs": {
+    "note": "RecallArena core-CS. Priority OS≈DBMS → CN → OOP (week-3 compression protects this order). Produce the answer BEFORE flipping; SQL topics get a 'write the query' variant. Each produced answer mints a kind:'corecs' card → Leitner spacing. Answer format: definition → example → tradeoff.",
+    "priority": ["OS", "DBMS", "CN", "OOP"],
+    "subjects": {
+      "OS": ["process vs thread", "process states & context switching", "CPU scheduling (FCFS/SJF/RR/priority) + avg waiting/turnaround", "critical section / mutex vs semaphore / producer-consumer", "deadlock — 4 Coffman conditions, prevention/avoidance (Banker's), detection", "paging / segmentation / virtual memory / demand paging", "page replacement (FIFO/LRU/Optimal) + thrashing", "fragmentation", "user vs kernel mode", "why context switching is expensive"],
+      "DBMS": ["ACID properties", "normalization 1NF→BCNF + when to denormalize", "keys (primary/candidate/foreign/super)", "joins (inner/outer/self) — WRITE them [SQL]", "indexing (B/B+ tree, clustered vs non-clustered) + when indexes hurt", "transactions / concurrency control / locks / 2-phase locking", "isolation levels + dirty/non-repeatable/phantom reads", "SQL vs NoSQL tradeoffs", "2nd-highest salary [SQL]", "GROUP BY/HAVING + subquery [SQL]"],
+      "CN": ["OSI vs TCP/IP layers", "TCP vs UDP", "3-way handshake", "what happens when you type a URL (DNS→TCP→TLS→HTTP→render)", "HTTP/HTTPS + status codes + methods", "DNS", "IP / subnetting basics", "TLS/SSL high level", "public vs private IP / NAT"],
+      "OOP": ["4 pillars (encapsulation/abstraction/inheritance/polymorphism) + crisp example each", "compile-time vs runtime polymorphism (overloading vs overriding)", "abstract class vs interface + when", "association vs aggregation vs composition (is-a vs has-a)", "why composition over inheritance", "SOLID (overlaps the LLD block)"]
+    }
+  },
+
+  "sysd": {
+    "note": "The second decider. LLD-heavy (higher yield for OAs / machine-coding) + HLD fundamentals. Each session PRODUCES an artifact (class diagram / API sketch / capacity estimate / code skeleton) saved as a kind:'sysd' card → later you reproduce the design from blank. Coach runs Socratic design mocks (no full solutions).",
+    "cadence": { "Mon": "LLD", "Tue": "HLD", "Wed": "LLD", "Thu": "HLD", "Fri": "LLD", "Sat": "machine-code", "Sun": "review" },
+    "lld": {
+      "foundations": ["SOLID (the smell each fixes)", "Strategy", "Factory / Abstract Factory", "Singleton (thread-safe + the criticism)", "Observer", "Builder", "Decorator", "Command", "Adapter / Facade", "State"],
+      "framework": ["clarify requirements (use-cases)", "entities → classes (single responsibility)", "relationships (has-a vs is-a)", "apply patterns — announce them", "code the happy path first", "concurrency if asked (lock the spot, not the lot)", "walk a run + name extensions"],
+      "machine_coding": ["Parking Lot", "BookMyShow / movie booking", "Splitwise", "Elevator system", "LRU / LFU cache", "Rate Limiter", "Tic-Tac-Toe / Chess", "Logging Framework", "Vending Machine", "Notification Service", "Snake & Ladder"]
+    },
+    "hld": {
+      "framework": ["Requirements (functional + non-functional — ASK)", "Estimate (users→QPS read/write, storage/yr, bandwidth)", "API design", "Data model (SQL vs NoSQL + why)", "High-level (Client→LB→app→cache→DB + CDN/queue/blob)", "Deep-dive the bottleneck", "Tradeoffs (SPOF, 10× scale)"],
+      "building_blocks": ["load balancer", "reverse proxy", "cache (cache-aside/write-through/write-back; LRU/LFU/TTL)", "CDN", "SQL vs NoSQL", "replication (leader-follower, lag)", "sharding / partitioning (shard key, hotspots)", "indexing (B+ tree)", "message queue (Kafka/RabbitMQ/SQS)", "consistent hashing", "CAP theorem", "consistency models (strong vs eventual)", "rate limiter (token/leaky bucket, sliding window)", "blob store (S3)", "search / inverted index", "websocket vs polling vs SSE", "idempotency", "bloom filter"],
+      "canonical": ["TinyURL / URL shortener", "Rate Limiter", "Pastebin", "Twitter / Instagram feed (fan-out)", "Chat / WhatsApp", "Notification system", "Typeahead / autocomplete", "YouTube / Netflix", "Web crawler", "Uber nearby"]
+    },
+    "numbers": {
+      "powers_of_two": "2^10≈1K, 2^20≈1M, 2^30≈1B, 2^40≈1T",
+      "time": "86,400 ≈ 100K s/day → X/day ÷ 100K ≈ X/s (1M/day≈12 QPS, 1B/day≈12K QPS)",
+      "latency": "memory ~100ns ≫ SSD ~100µs ≫ DC RTT ~0.5ms ≫ disk seek ~10ms ≫ cross-continent ~150ms",
+      "assumptions": "read:write ~100:1, ~500B-1KB/record, 1 server ≈ a few thousand QPS"
+    }
+  },
+
+  "companies": {
+    "note": "Seed tags across all tiers (a typical campus draws all of them). Tag PROBLEMS by reusing problems.json topic/pattern fields rather than hand-tagging. Surface as a filter on the command center, not a heavyweight view.",
+    "tiers": {
+      "faang_top_product": ["Google", "Amazon", "Microsoft", "Meta", "Atlassian", "Uber", "Adobe", "Salesforce"],
+      "quant_hft": ["Tower Research", "Optiver", "Jane Street", "Graviton", "WorldQuant", "DE Shaw", "Quadeye", "Da Vinci"],
+      "indian_unicorns": ["Razorpay", "PhonePe", "CRED", "Swiggy", "Zomato", "Flipkart", "Meesho", "Groww"]
+    },
+    "pattern_tags": {
+      "Google": ["graphs", "DP", "design"],
+      "Amazon": ["LLD", "leadership principles", "trees/graphs"],
+      "Quant": ["bit tricks", "Max-XOR", "probability/math", "1800+ CF speed"],
+      "Razorpay": ["machine-coding LLD", "DBMS/SQL", "concurrency"]
+    }
+  }
+}

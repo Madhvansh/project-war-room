@@ -1,0 +1,10 @@
+{
+  "comment": "Coach backend: the local `claude` CLI, driven headless. NO API key, ever - the server strips ANTHROPIC_* from the child env on every call. `command` is the binary to spawn; on Windows an npm-installed shim is claude.cmd. Models map to the escalation ladder; use aliases your CLI actually resolves.",
+  "command": "claude",
+  "models": {
+    "l1_3": "sonnet",
+    "l4_5": "opus"
+  },
+  "timeout_ms": 90000,
+  "max_context_turns": 10
+}
