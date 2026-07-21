@@ -1,0 +1,23 @@
+# Netlify deploy config for PROJECT WAR ROOM (static SPA + Firebase cloud mode).
+# The app is a hash-routed single page, so no rewrite rules are needed — every
+# route is served by public/index.html. The build step only stages the root
+# JSON data files into the publish dir and (optionally) injects Firebase config.
+# See DEPLOY.md for the full walkthrough.
+
+[build]
+  command = "node scripts/netlify-build.mjs"
+  publish = "public"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Long-cache the immutable shipped data; the app files revalidate normally.
+[[headers]]
+  for = "/*.s3.json"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/problems.json"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"

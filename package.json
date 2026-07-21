@@ -10,6 +10,7 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node server.js",
+    "build": "node scripts/netlify-build.mjs",
     "setup": "node scripts/setup.mjs",
     "test": "node scripts/laws.mjs",
     "smoke": "node scripts/smoke.mjs",

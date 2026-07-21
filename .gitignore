@@ -20,6 +20,15 @@ build/
 .env
 .env.local
 
+# Netlify build stages copies of the root data files into public/ (the publish
+# dir) at deploy time — never commit these generated duplicates.
+/public/curriculum.json
+/public/curriculum.s2.json
+/public/problems.json
+/public/warplan.s3.json
+/public/arena.s3.json
+/public/doctrine.s3.json
+
 node_modules/
 
 # editor + OS noise
