@@ -111,7 +111,7 @@ function renderWindowClosed(root) {
       <p class="faint" style="margin-top:12px"><a href="#/report">end-of-sprint report ▸</a> ·
         <a href="#/cards">review deck ▸</a> · <a href="#/calendar">calendar ▸</a></p>
     </div>`;
-  root.querySelector('#startcampaign').addEventListener('click', () => startCampaign(2));
+  root.querySelector('#startcampaign').addEventListener('click', () => startCampaign(App.state.log.length ? 2 : 1));
   root.querySelector('#runday').addEventListener('click', () => dayPickerModal());
 }
 
@@ -620,7 +620,7 @@ export function renderMission(root) {
 
   root.innerHTML = `
     ${focusBanner}
-    ${!preSprint() ? `<div class="banner cta-campaign"><b>▶ THE SECOND ATTEMPT</b> — re-run the curriculum from <b>Day 2</b> at your own pace. Nothing is reset; your logs stay and count. Complete a day's full Tier A + Tier B to <b>WIN</b> it — no clock, no "day lost". <button id="startcampaign" class="primary" style="margin-left:8px">START ▸</button></div>` : ''}
+    ${!preSprint() && App.state.log.length ? `<div class="banner cta-campaign"><b>▶ THE SECOND ATTEMPT</b> — re-run the curriculum from <b>Day 2</b> at your own pace. Nothing is reset; your logs stay and count. Complete a day's full Tier A + Tier B to <b>WIN</b> it — no clock, no "day lost". <button id="startcampaign" class="primary" style="margin-left:8px">START ▸</button></div>` : ''}
     ${preSprint() ? `<div class="banner">WARM-UP NIGHT — <b>Day 1 · ${esc(dayEntry(1).date)} (${esc(dayEntry(1).weekday)})</b> starts tomorrow.
        Everything works now: reps bank into the sheet and the vault, logged as <b>day 0</b>.
        Straight talk: tomorrow's quota counts only tomorrow's solves (§3.5) — pre-solving the Day 1 list
@@ -882,7 +882,7 @@ export function renderMission(root) {
   root.querySelector('#backtoday')?.addEventListener('click', () => { clearFocusDay(); location.hash = '#/'; });
   root.querySelector('#runanother')?.addEventListener('click', () => dayPickerModal());
   root.querySelector('#runday')?.addEventListener('click', () => dayPickerModal());
-  root.querySelector('#startcampaign')?.addEventListener('click', () => startCampaign(2)); // SEASON 2: enter the lane
+  root.querySelector('#startcampaign')?.addEventListener('click', () => startCampaign(App.state.log.length ? 2 : 1)); // SEASON 2: enter the lane
 
   // NOW + NEXT: click the bar or press N — zero decisions mid-grind
   const runCue = () => {
