@@ -30,6 +30,7 @@ import { renderCalendar } from './views/calendar.js';
 import { renderForge } from './views/forge.js';
 import { openPalette, closePalette } from './views/palette.js';
 import { openShortcuts, closeShortcuts } from './views/shortcuts.js';
+import { Cloud } from './cloud.js'; // CLOUD MODE (Netlify + Firebase); inert unless configured
 
 export { Laws };
 export const App = {
@@ -539,6 +540,9 @@ function checkNag() {
 
 // ── boot ─────────────────────────────────────────────────────────────────────
 async function boot() {
+  // CLOUD MODE: wait for sign-in + per-user config before loading state.
+  // No-op (returns immediately) when firebase-config.js is left as placeholder.
+  await Cloud.init();
   const sp = new URLSearchParams(location.search).get('speed');
   if (sp && +sp > 0) App.speed = +sp;
   const ck = new URLSearchParams(location.search).get('clock');
