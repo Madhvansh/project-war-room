@@ -394,6 +394,21 @@ All plain JSON, all editable — the app reads everything from data rather than 
 
 > If you change the plan structure, run `npm test` — the law audit checks that the curriculum and the engine still agree.
 
+### Cloud mode (Netlify + Firebase)
+
+Optional. Turns the app into a hosted static site with Google sign-in and one saved record per user in Firebase Firestore, instead of local `./data`. Local mode is unaffected — this only switches on when Firebase is configured. Full walkthrough in **[DEPLOY.md](DEPLOY.md)**; the short version:
+
+| Build-time variable | What it does |
+|---|---|
+| `FIREBASE_PROJECT_ID` | Your Firebase project id. **Presence of this turns cloud mode on.** |
+| `FIREBASE_API_KEY` | Web API key (not a secret — Firestore rules protect the data). |
+| `FIREBASE_APP_ID` | Web app id. |
+| `FIREBASE_MESSAGING_SENDER_ID` | Sender id. |
+| `FIREBASE_AUTH_DOMAIN` | Optional — defaults to `<project-id>.firebaseapp.com`. |
+| `FIREBASE_STORAGE_BUCKET` | Optional — defaults to `<project-id>.appspot.com`. |
+
+Set these in Netlify's environment (or copy `.env.example`); `scripts/netlify-build.mjs` bakes them into `public/firebase-config.js` at deploy time, so nothing project-specific is committed. To run without env vars, edit `public/firebase-config.js` directly. Per-user settings (name, start date, baseline, timezone, Codeforces handle) are set in-app via the **⚙ Settings** panel — the cloud equivalent of `data/config.json` and `npm run setup`. **The AI Coach is local-only** (it needs the `claude` CLI); in cloud mode those controls show a clear message and everything else works. Security rules live in `firestore.rules`.
+
 ---
 
 ## Scripts
@@ -402,6 +417,7 @@ All plain JSON, all editable — the app reads everything from data rather than 
 |---|---|
 | `npm start` | Run the app on <http://localhost:4350>. |
 | `npm run demo` | A throwaway populated instance on `:4399`, sandboxed to `./data-demo`. |
+| `npm run build` | Stage the root data files into `public/` and inject Firebase config for a static/cloud deploy. Run automatically by Netlify; see [DEPLOY.md](DEPLOY.md). |
 | `npm run setup -- --start 2026-08-07` | Write your settings. Run with no flags to see current ones. |
 | `npm test` | The law audit — 116 assertions checking the engine against the curriculum. Pure, no server, no network. |
 | `npm run smoke` | API smoke test across every endpoint. Spawns its own server on a temp directory. |
