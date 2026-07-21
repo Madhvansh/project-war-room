@@ -36,5 +36,6 @@ node_modules/
 Thumbs.db
 .vscode/
 .idea/
+.serena/
 *.swp
 tmp/
