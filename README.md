@@ -8,6 +8,8 @@ npm start   →   http://localhost:4350
 
 **Zero dependencies. No `npm install`, no build step, no database, no account, no cloud.** One Node file serves the app; everything you do is readable JSON in `./data` on your own machine.
 
+> **Want it online instead?** An optional **cloud mode** deploys the whole thing to Netlify with Google sign-in and per-user progress saved to Firebase — so you can train from any device, and share the URL with others. Local mode stays the default and loses nothing. See **[Deploy to the web](#deploy-to-the-web-optional)**.
+
 ![Mission Control](docs/screenshots/mission.png)
 
 ---
@@ -164,9 +166,29 @@ npm run setup -- --cf tourist                  # Codeforces handle (omit to keep
 
 ---
 
+## Deploy to the web (optional)
+
+Local mode is the default and the fullest version. But if you'd rather run WAR ROOM as a hosted site — reachable from your phone, your laptop, and anyone you give the link to — there's an optional **cloud mode**: a static build on **Netlify** with **Google sign-in** and each person's record saved to **Firebase Firestore**.
+
+```
+your-site.netlify.app  →  sign in with Google  →  your own saved war room
+```
+
+- **One record per user.** Everyone who signs in gets their own private progress, gated by Firestore security rules — nobody can see anyone else's.
+- **Any device.** Start a solve on your laptop, check the review deck on your phone; it's the same account.
+- **Free.** Firebase's Spark plan and Netlify's free tier cover it comfortably.
+- **Set-your-own-dates in the app.** A **⚙ Settings** panel replaces `data/config.json` — name, start date, baseline, timezone, Codeforces handle.
+- **Costs you the Coach.** The AI Coach, mock interviewer and card enrichment need the local `claude` CLI, which can't run on static hosting — in cloud mode they show a clear "local-only" message. **Every solve, card and evidence gate works fully; the gates never used AI anyway.**
+
+Nothing about local mode changes: leave Firebase unconfigured and `npm start` behaves exactly as it always has. The whole toggle is one file, [`public/firebase-config.js`](public/firebase-config.js).
+
+**→ Full step-by-step: [DEPLOY.md](DEPLOY.md)** (Firebase project, auth, rules, Netlify env vars — about ten minutes).
+
+---
+
 ## Good to know
 
-**Your data is yours.** Everything is readable JSON in `./data` — no account, no telemetry, no network calls except an optional Codeforces rating sync. `data/` is gitignored, so forking this repo never carries your record with it. Backing up = copying the folder.
+**Your data is yours.** Everything is readable JSON in `./data` — no account, no telemetry, no network calls except an optional Codeforces rating sync. `data/` is gitignored, so forking this repo never carries your record with it. Backing up = copying the folder. *(In cloud mode the same JSON lives in your Firebase project instead — `users/{uid}/warroom/*` — equally readable and exportable from the Firestore console.)*
 
 **Two files are private by design:** `data/` (everything you do) and `grill.s3.json` (your project dossiers — a candid account of your own work). Both are gitignored.
 
@@ -194,7 +216,7 @@ Also in `docs/`: a [2-week core-CS + system-design sprint guide](docs/INTERVIEW-
 
 ## Contributing
 
-Keep the constraints: **no dependencies, no build step**, everything readable, and `npm test` green (116 assertions over the rules engine — the browser and the tests import the same file). If you change plan structure or rules, update the audit in the same commit.
+Keep the constraints: **no runtime dependencies, no build step to run the app**, everything readable, and `npm test` green (116 assertions over the rules engine — the browser and the tests import the same file). If you change plan structure or rules, update the audit in the same commit. *(The optional cloud build in `scripts/netlify-build.mjs` only copies files and reads env vars — it adds no dependency and local mode never runs it.)*
 
 ---
 
